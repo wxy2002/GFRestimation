@@ -20,7 +20,7 @@ The pipeline has two main parts:
 ## Requirements
 
 - Python, PyTorch, and common scientific packages including `numpy`, `pandas`, `scikit-learn`, `matplotlib`, `nibabel`, `tqdm`, `scikit-image`.
-- 3D CT volumes in NIfTI format and corresponding CSV labels prepared under `data_All/<hospital>/` (not included in this repo).
+- 3D CT volumes in NIfTI format and corresponding CSV labels prepared under `data_All/<hospital>/` (not included).
 
 ## nnUnet
 
