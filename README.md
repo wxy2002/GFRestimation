@@ -24,5 +24,5 @@ The pipeline has two main parts:
 
 ## nnUnet
 
-The nnU-Net configuration and parameters used in our experiments can be accessed via the following URL: <https://huggingface.co/cnWxy/nnUnet/tree/main>.
+The nnU-Net parameters used in our experiments can be accessed via the following URL: <https://huggingface.co/cnWxy/nnUnet/tree/main>.
 
