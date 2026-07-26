@@ -312,7 +312,7 @@ class mlp(nn.Module):
 
         features = torch.cat([f_a, f_v], dim=1)
 
-        '''# 最终预测
+        # 最终预测
         output_l = self.final_layer_l(features)
         output_r = self.final_layer_r(features)
         output_l = F.softmax(output_l, dim=1)
@@ -327,7 +327,7 @@ class mlp(nn.Module):
         output_r = output_r[:, 0] * out_a_r + output_r[:, 1] * out_v_r + output_r[:, 2] * pre_2.reshape(-1)
 
         output_l = output_l.reshape(-1, 1)
-        output_r = output_r.reshape(-1, 1)'''
+        output_r = output_r.reshape(-1, 1)
 
         output_l = self.final_layer_l(features)
         output_r = self.final_layer_r(features)
