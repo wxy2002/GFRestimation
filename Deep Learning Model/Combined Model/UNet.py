@@ -295,7 +295,7 @@ class mlp(nn.Module):
         out_a, f_a = self.model_a(a)
         out_v, f_v = self.model_v(v)
 
-        features = torch.cat([f_a, f_v, clin, pre_1, pre_2], dim=1)
+        features = torch.cat([f_a, f_v, clin], dim=1)
 
         '''# 最终预测
         output_l = self.final_layer_l(features)
