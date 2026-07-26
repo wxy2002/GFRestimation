@@ -248,21 +248,6 @@ class mlp(nn.Module):
             param.requires_grad = False
         for param in self.model_v.parameters():
             param.requires_grad = False
-        '''for name, param in self.model_a.named_parameters():
-            if 'pool_to_linear' in name:
-                param.requires_grad = True
-            else:
-                param.requires_grad = False
-        for name, param in self.model_v.named_parameters():
-            if 'pool_to_linear' in name:
-                param.requires_grad = True
-            else:
-                param.requires_grad = False
-        for name, param in self.model_d.named_parameters():
-            if 'pool_to_linear' in name:
-                param.requires_grad = True
-            else:
-                param.requires_grad = False'''
         # Linear调整层
         self.linear_a = nn.Sequential(
             nn.Linear(4 * 9, 64),
@@ -284,7 +269,7 @@ class mlp(nn.Module):
         )
         # 最终预测层
         self.final_layer_l = nn.Sequential(
-            nn.Linear(2 * 4 * 9, 128),
+            nn.Linear(2 * 4 * 9 + 42, 128),
             # nn.BatchNorm1d(64),
             nn.ReLU(),
             nn.Dropout(0.2),
@@ -295,7 +280,7 @@ class mlp(nn.Module):
             nn.Linear(32, 1)
         )
         self.final_layer_r = nn.Sequential(
-            nn.Linear(2 * 4 * 9, 128),
+            nn.Linear(2 * 4 * 9 + 42, 128),
             # nn.BatchNorm1d(64),
             nn.ReLU(),
             nn.Dropout(0.2),
@@ -310,13 +295,13 @@ class mlp(nn.Module):
         out_a, f_a = self.model_a(a)
         out_v, f_v = self.model_v(v)
 
-        features = torch.cat([f_a, f_v], dim=1)
+        features = torch.cat([f_a, f_v, clin, pre_1, pre_2], dim=1)
 
         '''# 最终预测
         output_l = self.final_layer_l(features)
         output_r = self.final_layer_r(features)
         output_l = F.softmax(output_l, dim=1)
-        output_r = F.softmax(output_r, dim=1)'''
+        output_r = F.softmax(output_r, dim=1)
 
         out_a_l = out_a[:, 0]
         out_a_r = out_a[:, 1]
@@ -327,7 +312,7 @@ class mlp(nn.Module):
         output_r = output_r[:, 0] * out_a_r + output_r[:, 1] * out_v_r + output_r[:, 2] * pre_2.reshape(-1)
 
         output_l = output_l.reshape(-1, 1)
-        output_r = output_r.reshape(-1, 1)
+        output_r = output_r.reshape(-1, 1)'''
 
         output_l = self.final_layer_l(features)
         output_r = self.final_layer_r(features)
