@@ -312,11 +312,11 @@ class mlp(nn.Module):
 
         features = torch.cat([f_a, f_v], dim=1)
 
-        # 最终预测
+        '''# 最终预测
         output_l = self.final_layer_l(features)
         output_r = self.final_layer_r(features)
         output_l = F.softmax(output_l, dim=1)
-        output_r = F.softmax(output_r, dim=1)
+        output_r = F.softmax(output_r, dim=1)'''
 
         out_a_l = out_a[:, 0]
         out_a_r = out_a[:, 1]
